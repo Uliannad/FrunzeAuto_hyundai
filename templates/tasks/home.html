@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid px-0">
+
+    <section class="hero-video-section position-relative overflow-hidden text-white" style="height: 100vh;">
+        <video autoplay loop muted playsinline class="position-absolute w-100 h-100" style="object-fit: cover; filter: brightness(70%);">
+            <source src="{% static 'videos/hero.mp4' %}" type="video/mp4">
+            Ваш браузер не підтримує відео.
+        </video>
+
+        <div class="position-absolute top-0 start-0 w-100" style="padding-top: 50px;">
+            <div class="container text-center text-md-start px-4">
+                <h1 class="display-3 fw-bold text-uppercase mb-4">ВІДКРИЙТЕ НОВІ ПЕРСПЕКТИВИ</h1>
+                <p class="lead mb-5 fs-4">Плануйте свою нову подорож з нами.</p>
+                <div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-start gap-3">
+                    <a href="#" class="btn btn-primary btn-lg rounded-pill px-5 py-3 text-uppercase fw-bold shadow-lg">ДІЗНАТИСЯ БІЛЬШЕ</a>
+                    <a href="#" class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 text-uppercase fw-bold shadow">ЗАПИС НА ТЕСТ-ДРАЙВ</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4">
+            <a href="#models" class="text-white">
+                <i class="bi bi-chevron-down fs-1 opacity-75"></i>
+            </a>
+        </div>
+    </section>
+
+
+    <section id="models" class="models-carousel-section py-5 bg-light">
+        <div class="container-fluid py-5">
+            <div id="modelsCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner px-md-5">
+
+                    <div class="carousel-item active">
+                        <div class="row g-4 justify-content-center px-4">
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <div class="card h-100 border-0 bg-transparent text-center">
+                                    <img src="{% static 'images/elantra.png' %}" class="card-img-top mb-3" alt="Elantra">
+                                    <div class="card-body p-0">
+                                        <h5 class="card-title text-uppercase mb-2 fs-6 fw-bold">Elantra</h5>
+                                        <a href="#" class="card-link text-decoration-none text-dark small text-uppercase">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <div class="card h-100 border-0 bg-transparent text-center">
+                                    <img src="{% static 'images/kona.png' %}" class="card-img-top mb-3" alt="Kona">
+                                    <div class="card-body p-0">
+                                        <h5 class="card-title text-uppercase mb-2 fs-6 fw-bold">Kona</h5>
+                                        <a href="#" class="card-link text-decoration-none text-dark small text-uppercase">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <div class="card h-100 border-0 bg-transparent text-center">
+                                    <img src="{% static 'images/ioniq5.png' %}" class="card-img-top mb-3" alt="Ioniq5">
+                                    <div class="card-body p-0">
+                                        <h5 class="card-title text-uppercase mb-2 fs-6 fw-bold">Ioniq5</h5>
+                                        <a href="#" class="card-link text-decoration-none text-dark small text-uppercase">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <div class="card h-100 border-0 bg-transparent text-center">
+                                    <img src="{% static 'images/venue.png' %}" class="card-img-top mb-3" alt="Venue">
+                                    <div class="card-body p-0">
+                                        <h5 class="card-title text-uppercase mb-2 fs-6 fw-bold">Venue</h5>
+                                        <a href="#" class="card-link text-decoration-none text-dark small text-uppercase">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                             </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="row g-4 justify-content-center px-4">
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <div class="card h-100 border-0 bg-transparent text-center">
+                                    <img src="{% static 'images/tucson.png' %}" class="card-img-top mb-3" alt="Tucson">
+                                    <div class="card-body p-0">
+                                        <h5 class="card-title text-uppercase mb-2 fs-6 fw-bold">Tucson</h5>
+                                        <a href="#" class="card-link text-decoration-none text-dark small text-uppercase">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <div class="card h-100 border-0 bg-transparent text-center">
+                                    <img src="{% static 'images/inster.png' %}" class="card-img-top mb-3" alt="Inster">
+                                    <div class="card-body p-0">
+                                        <h5 class="card-title text-uppercase mb-2 fs-6 fw-bold">Inster</h5>
+                                        <a href="#" class="card-link text-decoration-none text-dark small text-uppercase">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <div class="card h-100 border-0 bg-transparent text-center">
+                                    <img src="{% static 'images/santa fe.png' %}" class="card-img-top mb-3" alt="Santa Fe">
+                                    <div class="card-body p-0">
+                                        <h5 class="card-title text-uppercase mb-2 fs-6 fw-bold">Santa Fe</h5>
+                                        <a href="#" class="card-link text-decoration-none text-dark small text-uppercase">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <div class="card h-100 border-0 bg-transparent text-center">
+                                    <img src="{% static 'images/staria.jpg' %}" class="card-img-top mb-3" alt="Staria">
+                                    <div class="card-body p-0">
+                                        <h5 class="card-title text-uppercase mb-2 fs-6 fw-bold">Staria</h5>
+                                        <a href="#" class="card-link text-decoration-none text-dark small text-uppercase">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                             </div>
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev w-auto" type="button" data-bs-target="#modelsCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Попередній</span>
+                </button>
+                <button class="carousel-control-next w-auto" type="button" data-bs-target="#modelsCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                    <span class="visually-hidden">Наступний</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="services-grid-section py-5 bg-white">
+    <div class="container py-4">
+        <div class="row g-1"> <div class="col-md-6">
+                <a href="#" class="text-decoration-none text-dark">
+                    <div class="service-card d-flex flex-column justify-content-between p-5" style="background-color: #e4dcd9; min-height: 350px; transition: 0.3s;">
+                        <div class="icon-wrapper mb-4">
+                            <i class="bi bi-tools" style="font-size: 4rem; opacity: 0.3;"></i>
+                        </div>
+                        <div class="text-end">
+                            <h3 class="text-uppercase fw-normal mb-0">Сервісне <br> обслуговування <i class="bi bi-chevron-right fs-5"></i></h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-6">
+                <a href="#" class="text-decoration-none text-dark">
+                    <div class="service-card d-flex flex-column justify-content-between p-5" style="background-color: #e4dcd9; min-height: 350px; transition: 0.3s;">
+                        <div class="icon-wrapper mb-4">
+                            <i class="bi bi-steering-wheel" style="font-size: 4rem; opacity: 0.3;"></i>
+                        </div>
+                        <div class="text-end">
+                            <h3 class="text-uppercase fw-normal mb-0">Тест-драйв <i class="bi bi-chevron-right fs-5"></i></h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    .service-card:hover {
+        background-color: #dcd4d1 !important; /* Трохи темніший колір */
+        cursor: pointer;
+    }
+
+    .service-card h3 {
+        letter-spacing: 1px;
+        font-size: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .service-card {
+            min-height: 250px !important;
+            padding: 2rem !important;
+        }
+    }
+</style>
+{% endblock %}

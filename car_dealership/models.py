@@ -1,7 +1,6 @@
 from django.db import models
 
 class Car(models.Model):
-    # Категорії конкретно для лінійки Hyundai
     BODY_STYLE_CHOICES = [
         ('sedan', 'Седан'),
         ('suv', 'Кросовер'),
@@ -40,14 +39,17 @@ class SparePart(models.Model):
 
 class ServiceBooking(models.Model):
     name = models.CharField(max_length=100, verbose_name="Ім'я")
+    last_name = models.CharField(max_length=100, verbose_name="Прізвище")
+    email = models.CharField(max_length=100, verbose_name="email")
     phone = models.CharField(max_length=20, verbose_name="Телефон")
-    vin_code = models.CharField(max_length=17, verbose_name="VIN-код авто", blank=True)  # Важливо для сервісу
+    vin_code = models.CharField(max_length=17, verbose_name="VIN-код авто", blank=True)
     service_type = models.CharField(max_length=100, verbose_name="Тип робіт (ТО, діагностика)")
     date = models.DateTimeField(verbose_name="Дата запису")
 
 
 class TestDriveBooking(models.Model):
     name = models.CharField(max_length=100, verbose_name="Клієнт")
+    last_name = models.CharField(max_length=100, verbose_name="Прізвище")
     phone = models.CharField(max_length=20, verbose_name="Телефон")
     car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Обрана модель")
     date = models.DateTimeField(verbose_name="Час тест-драйву")
