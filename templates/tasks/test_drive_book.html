@@ -22,30 +22,31 @@
         <div class="col-md-6 bg-light p-4 rounded shadow-sm border">
             <h6 class="fw-bold mb-4 text-secondary text-uppercase">Введіть, будь ласка, контактні дані:</h6>
 
-            <form method="post">
+                        <form method="post">
                 {% csrf_token %}
-
-                {{ form.car.as_hidden }}
 
                 <div class="mb-3">
                     <label class="form-label fw-semibold">Ваше Ім'я: <span class="text-danger">*</span></label>
-                    {{ form.name }}
-                </div>
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">Прізвище: <span class="text-danger">*</span></label>
-                    {{ form.last_name }}
-                </div>
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">Номер телефона: <span class="text-danger">*</span></label>
-                    {{ form.phone }}
-                </div>
-                <div class="mb-4">
-                    <label class="form-label fw-semibold">Дата та час тест-драйву: <span class="text-danger">*</span></label>
-                    {{ form.date }}
+                    <input type="text" name="name" class="form-control" placeholder="Ірина" required style="border-radius: 15px;">
                 </div>
 
-                <button type="submit" class="btn w-100 py-3 fw-bold text-uppercase text-white" style="background-color: #00aad2;">
-                    Відправити заявку
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Прізвище: <span class="text-danger">*</span></label>
+                    <input type="text" name="last_name" class="form-control" placeholder="Давиденко" required style="border-radius: 15px;">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Номер телефона: <span class="text-danger">*</span></label>
+                    <input type="text" name="phone" class="form-control" placeholder="+380667171831" required style="border-radius: 15px;">
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Дата та час тест-драйву: <span class="text-danger">*</span></label>
+                    <input type="datetime-local" name="date" class="form-control" required style="border-radius: 15px;">
+                </div>
+
+                <button type="submit" class="btn w-100 py-3 fw-bold text-uppercase text-white" style="background-color: #00aad2; border-radius: 10px;">
+                    Відтворити заявку
                 </button>
             </form>
         </div>

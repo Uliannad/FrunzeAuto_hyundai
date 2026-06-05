@@ -4,6 +4,7 @@
 {% block content %}
 <div class="container-fluid px-0">
 
+
     <section class="hero-video-section position-relative overflow-hidden text-white" style="height: 100vh;">
         <video autoplay loop muted playsinline class="position-absolute w-100 h-100" style="object-fit: cover; filter: brightness(70%);">
             <source src="{% static 'videos/hero.mp4' %}" type="video/mp4">
@@ -16,7 +17,7 @@
                 <p class="lead mb-5 fs-4">Плануйте свою нову подорож з нами.</p>
                 <div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-start gap-3">
                     <a href="#" class="btn btn-primary btn-lg rounded-pill px-5 py-3 text-uppercase fw-bold shadow-lg">ДІЗНАТИСЯ БІЛЬШЕ</a>
-                    <a href="#" class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 text-uppercase fw-bold shadow">ЗАПИС НА ТЕСТ-ДРАЙВ</a>
+                    <a href="{% url 'test_drive_select' %}" class="btn btn-outline-light text-uppercase fw-bold px-4 py-3" style="border-radius: 50px; border-width: 2px;">ЗАПИС НА ТЕСТ-ДРАЙВ</a>
                 </div>
             </div>
         </div>
@@ -37,83 +38,99 @@
                     <div class="carousel-item active">
                         <div class="row g-4 justify-content-center px-4">
                             <div class="col-6 col-md-4 col-lg-3">
-                                <div class="card h-100 border-0 bg-transparent text-center">
-                                    <img src="{% static 'images/elantra.png' %}" class="card-img-top mb-3" alt="Elantra">
+                                <div class="card h-100 border-0 bg-transparent car-card text-center">
+                                    <a href="{% url 'car_detail' car_name='elantra' %}">
+                                        <img src="{% static 'images/elantra.png' %}" class="card-img-top mb-3 car-img" alt="Elantra">
+                                    </a>
                                     <div class="card-body p-0">
                                         <h5 class="card-title text-uppercase mb-2 fs-6 fw-bold">Elantra</h5>
-                                        <a href="#" class="card-link text-decoration-none text-dark small text-uppercase">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
+                                        <a href="{% url 'car_detail' car_name='elantra' %}" class="card-link text-decoration-none small text-uppercase car-link">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6 col-md-4 col-lg-3">
-                                <div class="card h-100 border-0 bg-transparent text-center">
-                                    <img src="{% static 'images/kona.png' %}" class="card-img-top mb-3" alt="Kona">
+                                <div class="card h-100 border-0 bg-transparent car-card text-center">
+                                    <a href="{% url 'car_detail' car_name='kona' %}">
+                                        <img src="{% static 'images/kona.png' %}" class="card-img-top mb-3 car-img" alt="Kona">
+                                    </a>
                                     <div class="card-body p-0">
                                         <h5 class="card-title text-uppercase mb-2 fs-6 fw-bold">Kona</h5>
-                                        <a href="#" class="card-link text-decoration-none text-dark small text-uppercase">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
+                                        <a href="{% url 'car_detail' car_name='kona' %}" class="card-link text-decoration-none small text-uppercase car-link">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6 col-md-4 col-lg-3">
-                                <div class="card h-100 border-0 bg-transparent text-center">
-                                    <img src="{% static 'images/ioniq5.png' %}" class="card-img-top mb-3" alt="Ioniq5">
+                                <div class="card h-100 border-0 bg-transparent car-card text-center">
+                                    <a href="{% url 'car_detail' car_name='ioniq5' %}">
+                                        <img src="{% static 'images/ioniq5.png' %}" class="card-img-top mb-3 car-img" alt="Ioniq5">
+                                    </a>
                                     <div class="card-body p-0">
                                         <h5 class="card-title text-uppercase mb-2 fs-6 fw-bold">Ioniq5</h5>
-                                        <a href="#" class="card-link text-decoration-none text-dark small text-uppercase">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
+                                        <a href="{% url 'car_detail' car_name='ioniq5' %}" class="card-link text-decoration-none small text-uppercase car-link">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6 col-md-4 col-lg-3">
-                                <div class="card h-100 border-0 bg-transparent text-center">
-                                    <img src="{% static 'images/venue.png' %}" class="card-img-top mb-3" alt="Venue">
+                                <div class="card h-100 border-0 bg-transparent car-card text-center">
+                                    <a href="{% url 'car_detail' car_name='venue' %}">
+                                        <img src="{% static 'images/venue.png' %}" class="card-img-top mb-3 car-img" alt="Venue">
+                                    </a>
                                     <div class="card-body p-0">
                                         <h5 class="card-title text-uppercase mb-2 fs-6 fw-bold">Venue</h5>
-                                        <a href="#" class="card-link text-decoration-none text-dark small text-uppercase">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
+                                        <a href="{% url 'car_detail' car_name='venue' %}" class="card-link text-decoration-none small text-uppercase car-link">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
                                     </div>
                                 </div>
                             </div>
-                             </div>
+                        </div>
                     </div>
 
                     <div class="carousel-item">
                         <div class="row g-4 justify-content-center px-4">
                             <div class="col-6 col-md-4 col-lg-3">
-                                <div class="card h-100 border-0 bg-transparent text-center">
-                                    <img src="{% static 'images/tucson.png' %}" class="card-img-top mb-3" alt="Tucson">
+                                <div class="card h-100 border-0 bg-transparent car-card text-center">
+                                    <a href="{% url 'car_detail' car_name='tucson' %}">
+                                        <img src="{% static 'images/tucson.png' %}" class="card-img-top mb-3 car-img" alt="Tucson">
+                                    </a>
                                     <div class="card-body p-0">
                                         <h5 class="card-title text-uppercase mb-2 fs-6 fw-bold">Tucson</h5>
-                                        <a href="#" class="card-link text-decoration-none text-dark small text-uppercase">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
+                                        <a href="{% url 'car_detail' car_name='tucson' %}" class="card-link text-decoration-none small text-uppercase car-link">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6 col-md-4 col-lg-3">
-                                <div class="card h-100 border-0 bg-transparent text-center">
-                                    <img src="{% static 'images/inster.png' %}" class="card-img-top mb-3" alt="Inster">
+                                <div class="card h-100 border-0 bg-transparent car-card text-center">
+                                    <a href="{% url 'car_detail' car_name='inster' %}">
+                                        <img src="{% static 'images/inster.png' %}" class="card-img-top mb-3 car-img" alt="Inster">
+                                    </a>
                                     <div class="card-body p-0">
                                         <h5 class="card-title text-uppercase mb-2 fs-6 fw-bold">Inster</h5>
-                                        <a href="#" class="card-link text-decoration-none text-dark small text-uppercase">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
+                                        <a href="{% url 'car_detail' car_name='inster' %}" class="card-link text-decoration-none small text-uppercase car-link">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6 col-md-4 col-lg-3">
-                                <div class="card h-100 border-0 bg-transparent text-center">
-                                    <img src="{% static 'images/santa fe.png' %}" class="card-img-top mb-3" alt="Santa Fe">
+                                <div class="card h-100 border-0 bg-transparent car-card text-center">
+                                    <a href="{% url 'car_detail' car_name='santa fe' %}">
+                                        <img src="{% static 'images/santa_fe.png' %}" class="card-img-top mb-3 car-img" alt="Santa Fe">
+                                    </a>
                                     <div class="card-body p-0">
                                         <h5 class="card-title text-uppercase mb-2 fs-6 fw-bold">Santa Fe</h5>
-                                        <a href="#" class="card-link text-decoration-none text-dark small text-uppercase">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
+                                        <a href="{% url 'car_detail' car_name='santa fe' %}" class="card-link text-decoration-none small text-uppercase car-link">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6 col-md-4 col-lg-3">
-                                <div class="card h-100 border-0 bg-transparent text-center">
-                                    <img src="{% static 'images/staria.jpg' %}" class="card-img-top mb-3" alt="Staria">
+                                <div class="card h-100 border-0 bg-transparent car-card text-center">
+                                    <a href="{% url 'car_detail' car_name='staria' %}">
+                                        <img src="{% static 'images/staria.jpg' %}" class="card-img-top mb-3 car-img" alt="Staria">
+                                    </a>
                                     <div class="card-body p-0">
                                         <h5 class="card-title text-uppercase mb-2 fs-6 fw-bold">Staria</h5>
-                                        <a href="#" class="card-link text-decoration-none text-dark small text-uppercase">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
+                                        <a href="{% url 'car_detail' car_name='staria' %}" class="card-link text-decoration-none small text-uppercase car-link">ДІЗНАТИСЯ БІЛЬШЕ <i class="bi bi-chevron-right"></i></a>
                                     </div>
                                 </div>
                             </div>
-                             </div>
+                        </div>
                     </div>
                 </div>
 
@@ -131,40 +148,67 @@
 
 
     <section class="services-grid-section py-5 bg-white">
-    <div class="container py-4">
-        <div class="row g-1"> <div class="col-md-6">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="service-card d-flex flex-column justify-content-between p-5" style="background-color: #e4dcd9; min-height: 350px; transition: 0.3s;">
-                        <div class="icon-wrapper mb-4">
-                            <i class="bi bi-tools" style="font-size: 4rem; opacity: 0.3;"></i>
-                        </div>
-                        <div class="text-end">
-                            <h3 class="text-uppercase fw-normal mb-0">Сервісне <br> обслуговування <i class="bi bi-chevron-right fs-5"></i></h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
+        <div class="container py-4">
+            <div class="row g-1">
 
-            <div class="col-md-6">
-                <a href="#" class="text-decoration-none text-dark">
-                    <div class="service-card d-flex flex-column justify-content-between p-5" style="background-color: #e4dcd9; min-height: 350px; transition: 0.3s;">
-                        <div class="icon-wrapper mb-4">
-                            <i class="bi bi-steering-wheel" style="font-size: 4rem; opacity: 0.3;"></i>
+                <div class="col-md-6">
+                    <a href="{% url 'service' %}" class="text-decoration-none text-dark">
+                        <div class="service-card d-flex flex-column justify-content-between p-5" style="background-color: #e4dcd9; min-height: 350px; transition: 0.3s;">
+                            <div class="icon-wrapper mb-4">
+                                <i class="bi bi-tools" style="font-size: 4rem; opacity: 0.3;"></i>
+                            </div>
+                            <div class="text-end">
+                                <h3 class="text-uppercase fw-normal mb-0">Сервісне <br> обслуговування <i class="bi bi-chevron-right fs-5"></i></h3>
+                            </div>
                         </div>
-                        <div class="text-end">
-                            <h3 class="text-uppercase fw-normal mb-0">Тест-драйв <i class="bi bi-chevron-right fs-5"></i></h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
 
+                <div class="col-md-6">
+                    <a href="{% url 'test_drive_select' %}" class="text-decoration-none text-dark">
+                        <div class="service-card d-flex flex-column justify-content-between p-5" style="background-color: #e4dcd9; min-height: 350px; transition: 0.3s;">
+                            <div class="icon-wrapper mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-steering-wheel" viewBox="0 0 16 16" style="opacity: 0.3;">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="M14.93 7.5H11a3 3 0 0 1-2.958 2.958L9.13 14.33a6.5 6.5 0 0 0 5.801-6.83M6.87 14.33l1.088-3.872A3 3 0 0 1 5 7.5H1.07a6.5 6.5 0 0 0 5.8 6.83M8 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                                </svg>
+                            </div>
+                            <div class="text-end">
+                                <h3 class="text-uppercase fw-normal mb-0">Тест-драйв <i class="bi bi-chevron-right fs-5"></i></h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+
+</div>
 
 <style>
+    .car-card .car-img {
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        will-change: transform;
+    }
+
+    .car-card .car-link {
+        color: #212529;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+
+    .car-card:hover .car-img {
+        transform: scale(1.06);
+    }
+
+    .car-card:hover .car-link {
+        color: #002c5f !important;
+    }
+
     .service-card:hover {
-        background-color: #dcd4d1 !important; /* Трохи темніший колір */
+        background-color: #dcd4d1 !important;
         cursor: pointer;
     }
 
