@@ -44,17 +44,12 @@
         </div>
     </div>
 
-    <div class="row g-3 justify-content-center text-center border-top pt-5">
-        <div class="col-md-4">
-            <a href="{% url 'car_constructor' car_name=car_img_name %}" class="btn btn-outline-dark w-100 py-3 fw-bold text-uppercase shadow-sm" style="border-radius: 10px; border-width: 2px;">
-                <i class="bi bi-sliders me-2"></i> Склад авто (Конструктор)
-            </a>
-        </div>
-        <div class="col-md-4">
-            <a href="{% url 'test_drive_select' %}?car={{ car_name }}" class="btn w-100 py-3 fw-bold text-uppercase text-white shadow" style="background-color: #00aad2; border-radius: 10px;">
-                <i class="bi bi-steering me-2"></i> Замовити Тест-Драйв
-            </a>
-        </div>
+
+      <div class="d-flex justify-content-center my-4">
+    <a href="{% url 'test_drive_select' %}" class="btn px-5 py-3 fw-bold text-uppercase text-white shadow" style="background-color: #00aad2; border-radius: 10px;">
+        <i class="bi bi-steering me-2"></i> Замовити Тест-Драйв
+    </a>
+</div>
     </div>
 </div>
 {% endblock %}

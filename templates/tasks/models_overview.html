@@ -66,25 +66,25 @@
 </div>
 
 <style>
-    /* Стиль неактивної кнопки фільтра */
+
     #car-filters .nav-link {
         color: #495057;
         background: transparent;
         border: none;
         transition: all 0.2s ease;
     }
-    /* Стиль активної кнопки (фірмовий темно-синій колір) */
+
     #car-filters .nav-link.active {
         color: #fff !important;
         background-color: #002c5f !important;
         box-shadow: 0 4px 10px rgba(0, 44, 95, 0.2);
     }
-    /* Ефект при наведенні мишки на картку */
+
     .card:hover {
         transform: translateY(-5px);
         box-shadow: 0 12px 24px rgba(0,0,0,0.08) !important;
     }
-    /* Плавне зникнення/поява карток при фільтрації */
+
     .car-item {
         transition: all 0.4s ease;
     }
@@ -97,7 +97,7 @@
 
         filterButtons.forEach(button => {
             button.addEventListener('click', function () {
-                // Видаляємо клас active у всіх кнопок і додаємо натиснутій
+
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
 
@@ -105,16 +105,16 @@
 
                 carItems.forEach(item => {
                     if (selectedFilter === 'all') {
-                        // Показуємо всі машини
+
                         item.style.display = 'block';
                         setTimeout(() => item.style.opacity = '1', 50);
                     } else {
-                        // Перевіряємо чи містить елемент клас обраного фільтра
+
                         if (item.classList.contains(selectedFilter)) {
                             item.style.display = 'block';
                             setTimeout(() => item.style.opacity = '1', 50);
                         } else {
-                            // Ховаємо елемент
+
                             item.style.opacity = '0';
                             item.style.display = 'none';
                         }

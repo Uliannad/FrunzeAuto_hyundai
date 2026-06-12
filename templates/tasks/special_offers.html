@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid px-0" style="margin-top: 30px;">
+
+    <section class="position-relative text-white d-flex align-items-center overflow-hidden" style="height: 480px; background: #002c5f;">
+        <img src="{% static 'images/offers_banner.jpg' %}" class="position-absolute w-100 h-100 start-0 top-0" style="object-fit: cover; opacity: 0.35;" alt="Hyundai Service">
+
+        <div class="container position-relative px-4" style="z-index: 2;">
+            <span class="badge text-uppercase fw-bold px-3 py-2 mb-3" style="letter-spacing: 2px; background-color: #00aad2;">ПРОГРАМИ ПІДТРИМКИ</span>
+            <h1 class="display-3 fw-bold text-uppercase mb-3" style="letter-spacing: 1px;">Спеціальні <br>пропозиції</h1>
+            <p class="fs-4 lead max-width-600 opacity-90 mb-4">Hyundai та офіційний сервіс на особливих умовах від виробника.</p>
+
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container py-4">
+            <div class="row g-4">
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm overflow-hidden text-start" style="border-radius: 4px;">
+                        <div style="height: 220px; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=600" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="Сезонне ТО Hyundai">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <span class="text-uppercase fw-bold text-danger mb-2" style="font-size: 0.8rem; letter-spacing: 1px;">Комплексний сервіс</span>
+                            <h5 class="fw-bold text-uppercase mb-3" style="color: #002c5f; font-size: 1.15rem;">Сезонне обслуговування з вигодою до 20%</h5>
+                            <p class="text-muted small mb-0" style="text-align: justify; line-height: 1.5;">
+                                Програма підготовки автомобіля до зміни сезону включає повну комп'ютерну діагностику ходової частини, перевірку рівня технічних рідин та спеціальні умови на заміну фільтрів і мастила для всіх моделей Hyundai.
+                            </p>
+                            <hr class="text-black-50 mt-4 mb-3">
+                            <div class="text-muted small">
+                                <i class="bi bi-calendar3 me-2"></i> Пропозиція діє до 31.07.2026
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm overflow-hidden text-start" style="border-radius: 4px;">
+                        <div style="height: 220px; overflow: hidden;">
+                            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="Фінансування Hyundai Finance">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <span class="text-uppercase fw-bold text-info mb-2" style="font-size: 0.8rem; letter-spacing: 1px;">Фінансування</span>
+                            <h5 class="fw-bold text-uppercase mb-3" style="color: #002c5f; font-size: 1.15rem;">Програма кредитування Hyundai Finance</h5>
+                            <p class="text-muted small mb-0" style="text-align: justify; line-height: 1.5;">
+                                Офіційні умови фінансування розраховані на підтримку покупців з фіксованою ставкою від 0.01% річних на перші 24 місяці. Доступні гнучкі графіки погашення та можливість мінімального першого внеску.
+                            </p>
+                            <hr class="text-black-50 mt-4 mb-3">
+                            <div class="text-muted small">
+                                <i class="bi bi-shield-check me-2"></i> Офічна програма бренду
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm overflow-hidden text-start" style="border-radius: 4px;">
+                        <div style="height: 220px; overflow: hidden;">
+                            <img src="https://autotrading-hyundai.kharkiv.ua/sites/default/files_actual/755335630527408.jpg" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="Комплектація Hyundai">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <span class="text-uppercase fw-bold text-success mb-2" style="font-size: 0.8rem; letter-spacing: 1px;">Спеціальна комплектація</span>
+                            <h5 class="fw-bold text-uppercase mb-3" style="color: #002c5f; font-size: 1.15rem;">Комплект додаткового обладнання у подарунок</h5>
+                            <p class="text-muted small mb-0" style="text-align: justify; line-height: 1.5;">
+                                При придбанні кросоверів серії Tucson або Santa Fe у поточному місяці, автомобіль безкоштовно доукомплектовується пакетом оригінальних аксесуарів, включаючи всесезонні захисні килимки салону та фірмовий набір автомобіліста.
+                            </p>
+                            <hr class="text-black-50 mt-4 mb-3">
+                            <div class="text-muted small">
+                                <i class="bi bi-calendar3 me-2"></i> Пропозиція діє до 30.06.2026
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

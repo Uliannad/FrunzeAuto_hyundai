@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm p-4 bg-white" style="border-radius: 4px;">
+                <h3 class="fw-bold text-uppercase mb-4" style="color: #002c5f; letter-spacing: 1px;">
+                    <i class="bi bi-pencil-square me-2"></i>Редагування профілю
+                </h3>
+                
+                <form method="POST">
+
+                    {% csrf_token %}
+                    
+                    {% for field in user_form %}
+                        <div class="mb-3">
+                            <label class="form-label fw-bold text-muted small text-uppercase">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.errors %}
+                                <div class="text-danger small mt-1">{{ field.errors }}</div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    
+                    {% for field in profile_form %}
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-muted small text-uppercase">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.errors %}
+                                <div class="text-danger small mt-1">{{ field.errors }}</div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn text-white text-uppercase fw-bold px-4 py-2 flex-grow-1" style="background-color: #002c5f; border-radius: 4px; font-size: 0.9rem;">
+                            Зберегти зміни
+                        </button>
+                        <a href="{% url 'home' %}" class="btn btn-outline-secondary text-uppercase fw-bold px-4 py-2" style="border-radius: 4px; font-size: 0.9rem;">
+                            Скасувати
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

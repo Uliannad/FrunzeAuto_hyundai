@@ -19,4 +19,9 @@ urlpatterns = [
     path('models/<str:car_name>/constructor/', views.car_constructor_view, name='car_constructor'),
     path('models-overview/', views.ModelsOverviewView.as_view(), name='models_overview'),
     path('service-info/', views.ServiceInfoView.as_view(), name='service_info'),
+    path('special-offers/', views.SpecialOffersView.as_view(), name='special_offers'),
+    path('trade-in/', views.TradeInView.as_view(), name='trade_in'),
+    path('profile/edit/', views.edit_profile_view, name='edit_profile'),
+    path('contacts/', views.ContactView.as_view(), name='contacts'),
+
 ]

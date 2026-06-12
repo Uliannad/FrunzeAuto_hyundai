@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 mb-5 text-center">
+            <h2 class="text-uppercase fw-bold" style="color: #002c5f; letter-spacing: 2px;">Контакти</h2>
+            <hr class="mx-auto" style="width: 50px; border: 2px solid #002c5f;">
+        </div>
+
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-0 shadow-sm p-4 text-center">
+                <h5 class="fw-bold mb-4"><i class="bi bi-geo-alt-fill me-2" style="color: #002c5f;"></i>Наш дилерський центр</h5>
+
+                <p class="mb-3"><strong>Адреса:</strong> м. Харків, вул. Прикладна, 1</p>
+                <p class="mb-3"><strong>Телефон:</strong> 0 800 507 555</p>
+                <p class="mb-3"><strong>Email:</strong> info@hyundai.kharkiv.ua</p>
+
+                <h6 class="fw-bold mt-3 mb-2">Графік роботи:</h6>
+                <p class="mb-0">Пн-Сб: 09:00 - 18:00</p>
+                <p class="mb-0">Нд: Вихідний</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

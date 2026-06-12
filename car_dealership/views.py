@@ -1,14 +1,30 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from car_dealership.models import Car, TestDriveBooking, ServiceBooking, SparePart
-from .forms import ServiceBookingForm, TestDriveForm
+from django.contrib.auth.models import User
+from car_dealership.models import Car, TestDriveBooking, ServiceBooking, SparePart, UserProfile
+from .forms import ServiceBookingForm, TestDriveForm, UserUpdateForm, ProfileUpdateForm
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+
+# ==========================================
+# 📑 КОНТЕКСТНИЙ ПРОЦЕСОР ДЛЯ ПРОФІЛЮ КОРИСТУВАЧА (ПОВЕРНУВ НА МІСЦЕ!)
+# ==========================================
+def profile_context_processor(request):
+    if request.user.is_authenticated:
+        return {
+            'service_bookings': ServiceBooking.objects.filter(user=request.user),
+            'test_drives': TestDriveBooking.objects.filter(user=request.user)
+        }
+    return {}
 
 
+# ==========================================
+# 🏠 ГОЛОВНІ СТОРІНКИ ТА АВТОРИЗАЦІЯ
+# ==========================================
 class HomeView(TemplateView):
     template_name = 'tasks/home.html'
 
@@ -24,78 +40,22 @@ class CarDetailView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        car_slug = self.kwargs.get('car_name', 'elantra').lower().strip()
 
-        # Отримуємо назву машини з URL
-        car_slug = self.kwargs.get('car_name')
-        if car_slug:
-            car_slug = car_slug.lower().strip()
-        else:
-            car_slug = 'elantra'
-
-        # ПОВНИЙ СЛОВНИК ДЛЯ ВСІХ МОДЕЛЕЙ
         car_descriptions = {
-            'elantra': (
-                "Hyundai Elantra — це втілення динамічного стилю та сучасних технологій. "
-                "Седан вражає своїм сміливим гранованим дизайном у стилі 'Parametric Dynamics', "
-                "просторішим технологічним салоном, наднизькою посадкою та цифровим кокпітом. "
-                "Він створений для тих, хто цінує драйверський характер, відмінну керованість "
-                "на високих швидкостях та виразний силует чотиридверного купе."
-            ),
-            'kona': (
-                "Hyundai Kona — яскравий, сміливий та ультрасучасний компактний кросовер, створений "
-                "для активного міського життя. Він миттєво виділяється в потоці завдяки футуристичній "
-                "лінії підсвічування 'Seamless Horizon'. Модель пропонує дивовижний простір для свого класу, "
-                "величезну кількість інтелектуальних помічників безпеки Smart Sense та високий кліренс "
-                "для впевнених подорожей за межі асфальту."
-            ),
-            'ioniq5': (
-                "Hyundai Ioniq 5 — повністю електричний кросовер нового покоління, який ламає стереотипи. "
-                "Побудований на революційній електро-платформі E-GMP, він вражає своїм ретро-футуристичним "
-                "піксельним дизайном. Салон розроблений за концепцією 'Smart Living Space' з абсолютно плавною "
-                "підлогою та сидіннями-шезлонгами. Модель підтримує надшвидку зарядку та здатна живити сторонні "
-                "електроприлади прямо від батареї автомобіля."
-            ),
-            'venue': (
-                "Hyundai Venue — найкомпактніший, маневрений та неймовірно практичний кросовер у лінійці. "
-                "Він ідеально підходить для вузьких міських вулиць та щоденних поїздок. Попри компактні "
-                "зовнішні розміри, продумана ергономіка салону забезпечує максимум простору та затишку для пасажирів. "
-                "Двоколірне забарвлення кузова, сучасна мультимедіа та висока посадка роблять його кращим вибором "
-                "як для першого автомобіля."
-            ),
-            'tucson': (
-                "Hyundai Tucson — світовий бестселер та справжня дизайнерська运行 революція у класі позашляховиків. "
-                "Його головна особливість — унікальна прихована оптика, яка повністю зливається з параметричною "
-                "решіткою радіатора у вимкненому стані. Розкішний двозонний інтер'єр преміум-класу, інтелектуальний "
-                "повний привід HTRAC та передові гібридні двигуни дарують безкомпромісну впевненість і комфорт у будь-якій подорожі."
-            ),
-            'inster': (
-                "Hyundai Inster — абсолютно новий, повністю електричний міський субкомпактний кросовер. "
-                "Він поєднує в собі унікальний кубічний дизайн, фірмову піксельну оптику та дивовижну трансформацію салону: "
-                "всі сидіння, включаючи водійське, можуть складатися в абсолютно рівну підлогу. "
-                "Inster — це екологічний, маневрений та технологічний гаджет на колесах із солідним запасом ходу для мегаполіса."
-            ),
-            'santa fe': (
-                "Hyundai Santa Fe — флагманського повнорозмірний сімейний кросовер, який отримав радикальний "
-                "брутальний дизайн з характерними H-подібними елементами оптики. Головна філософія моделі — "
-                "максимальний простір. Величезні двері багажника перетворюють задню частину авто на відкриту терасу "
-                "для відпочинку на природі. Доступний у версіях на 5, 6 або 7 місць, цей автомобіль створений для "
-                "подорожей першим класом."
-            ),
-            'staria': (
-                "Hyundai Staria — футуристичний мінівен космічного дизайну, який повністю змінює уявлення про "
-                "пасажирські перевезення. Силует, що нагадує космічний корабель, панорамні вікна та розкішні VIP-крісла "
-                "з підставками для ніг (оттоманками) у другому ряду створюють атмосферу приватного бізнес-джета. "
-                "Ідеальний вибір для великих родин, преміального трансферу та комфортного мобільного офісу."
-            )
+            'elantra': "Hyundai Elantra — це втілення динамічного стилю та сучасних технологій. Седан вражає своїм сміливим гранованим дизайном у стилі 'Parametric Dynamics'...",
+            'kona': "Hyundai Kona — яскравий, сміливий та ультрасучасний компактний кросовер, створений для активного міського життя...",
+            'ioniq5': "Hyundai Ioniq 5 — повністю електричний кросовер нового покоління, який ламає стереотипи...",
+            'venue': "Hyundai Venue — найкомпактніший, маневрений та неймовірно практичний кросовер у лінійці...",
+            'tucson': "Hyundai Tucson — світовий бестселер та справжня дизайнерська революція у класі позашляховиків...",
+            'inster': "Hyundai Inster — абсолютно новий, повністю електричний міський субкомпактний кросовер...",
+            'santa fe': "Hyundai Santa Fe — флагманського повнорозмірний сімейний кросовер, який отримав радикальний брутальний дизайн...",
+            'staria': "Hyundai Staria — футуристичний мінівен космічного дизайну, який повністю змінює уявлення про перевезення..."
         }
 
         context['car_name'] = car_slug.title()
         context['car_img_name'] = car_slug.replace(' ', '_')
-        context['car_description'] = car_descriptions.get(
-            car_slug,
-            "Сучасний автомобіль Hyundai, який поєднує в собі максимальний комфорт, надійність та передові технології."
-        )
-
+        context['car_description'] = car_descriptions.get(car_slug, "Сучасний автомобіль Hyundai.")
         return context
 
 
@@ -123,19 +83,6 @@ class RegisterView(CreateView):
         return redirect("home")
 
 
-def test_drive(request, car_id):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        phone = request.POST.get('phone')
-        date = request.POST.get('date')
-        car = get_object_or_404(Car, id=car_id)
-
-        TestDriveBooking.objects.create(
-            name=name, phone=phone, car=car, date=date
-        )
-        return render(request, 'tasks/success.html')
-
-
 class TestDriveSelectView(ListView):
     model = Car
     template_name = 'tasks/test_drive_select.html'
@@ -157,40 +104,45 @@ class TestDriveBookView(CreateView):
 
     def post(self, request, *args, **kwargs):
         car = get_object_or_404(Car, id=self.kwargs['car_id'])
-
         first_name = request.POST.get('name', '').strip()
         last_name = request.POST.get('last_name', '').strip()
         phone = request.POST.get('phone', '').strip()
-        date = request.POST.get('date', '').strip()
-        full_name = f"{first_name} {last_name}".strip()
+        date_str = request.POST.get('date', '').strip()
 
-        if first_name and phone:
+        if first_name and phone and date_str:
+            booking_user = request.user if request.user.is_authenticated else None
             TestDriveBooking.objects.create(
+                user=booking_user,
                 car=car,
-                name=full_name,
+                name=first_name,
+                last_name=last_name,
                 phone=phone,
-                date=date
+                date=date_str
             )
-            return redirect('success_page')
-        return super().post(request, *args, **kwargs)
+
+            return render(request, 'tasks/success.html')
+        return self.get(request, *args, **kwargs)
 
 
 class ServiceView(CreateView):
     model = ServiceBooking
     form_class = ServiceBookingForm
     template_name = 'tasks/service_booking.html'
+    # Повертаємо твою оригінальну сторінку успіху для сервісу
+    success_url = reverse_lazy('service_success_page')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['parts'] = SparePart.objects.all()
         return context
 
-    def post(self, request, *args, **kwargs):
-        form = self.get_form()
-        if form.is_valid():
-            form.save()
-            return redirect('service_success_page')
-        return self.form_invalid(form)
+    def form_valid(self, form):
+        booking = form.save(commit=False)
+        if self.request.user.is_authenticated:
+            booking.user = self.request.user
+        booking.save()
+        return super().form_valid(form)
+
 
 class ModelsOverviewView(TemplateView):
     template_name = 'tasks/models_overview.html'
@@ -205,9 +157,44 @@ class ModelsOverviewView(TemplateView):
             {'slug': 'tucson', 'name': 'TUCSON', 'price': 'від 1 150 000 грн', 'category': 'crossover'},
             {'slug': 'inster', 'name': 'INSTER', 'price': 'від 1 237 600 грн', 'category': 'crossover eco', 'is_new': True},
             {'slug': 'santa fe', 'name': 'SANTA FE', 'price': 'від 1 750 000 грн', 'category': 'crossover'},
-            {'slug': 'staria', 'name': 'STARIA', 'price': 'від 2 100 000 грн', 'category': 'mpv'}, # Багатоцільові
+            {'slug': 'staria', 'name': 'STARIA', 'price': 'від 2 100 000 грн', 'category': 'mpv'},
         ]
         return context
 
+
 class ServiceInfoView(TemplateView):
     template_name = 'tasks/service_info.html'
+
+
+class SpecialOffersView(TemplateView):
+    template_name = 'tasks/special_offers.html'
+
+
+class TradeInView(TemplateView):
+    template_name = 'tasks/trade_in.html'
+
+
+@login_required
+def edit_profile_view(request):
+    profile, created = UserProfile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = ProfileUpdateForm(request.POST, instance=profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect('home')
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=profile)
+
+    context = {
+        'user_form': user_form,
+        'profile_form': profile_form
+    }
+    return render(request, 'tasks/edit_profile.html', context)
+
+class ContactView(TemplateView):
+    template_name = 'tasks/contacts.html'
